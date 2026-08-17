@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "name": "TiendaApplication",
+      "request": "launch",
+      "mainClass": "com.tienda.ropa.TiendaApplication",
+      "projectName": "ropa",
+      "env": {
+        "DB_PASSWORD": "3366991212"
+      }
+    }
+  ]
+}
