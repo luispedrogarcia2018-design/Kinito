@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinito — Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Work+Sans:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body class="admin-body">
+
+<header class="rail">
+  <div class="rail-inner">
+    <a href="index.html" class="logo">KINITO<span class="logo-dot">.</span></a>
+    <span class="admin-badge">PANEL INTERNO</span>
+  </div>
+</header>
+
+<main class="admin-main">
+
+  <section class="admin-section">
+    <div class="section-head-admin">
+      <p class="eyebrow">— mensajes y pedidos —</p>
+      <h2>Contactos recibidos</h2>
+    </div>
+    <div id="contactos-estado" class="admin-estado">Cargando...</div>
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="tabla-contactos">
+        <thead>
+          <tr>
+            <th>Fecha</th>
+            <th>Tipo</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Mensaje</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="stitch-divider" aria-hidden="true"></div>
+
+  <section class="admin-section">
+    <div class="section-head-admin">
+      <p class="eyebrow">— base de clientes —</p>
+      <h2>Clientes registrados</h2>
+    </div>
+    <div id="clientes-estado" class="admin-estado">Cargando...</div>
+    <div class="admin-table-wrap">
+      <table class="admin-table" id="tabla-clientes">
+        <thead>
+          <tr>
+            <th>Registrado</th>
+            <th>Nombre</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+  </section>
+
+</main>
+
+<script src="js/admin.js"></script>
+</body>
+</html>
