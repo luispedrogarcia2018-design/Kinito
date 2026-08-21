@@ -39,4 +39,14 @@ public interface VentaRepository extends JpaRepository<Venta, Long> {
             WHERE v.id = :id
             """)
     Optional<Venta> findByIdConDetalle(@Param("id") Long id);
+
+    // Historial de compras de un cliente especifico, para su pantalla de detalle.
+    @Query("""
+            SELECT v FROM Venta v
+            JOIN FETCH v.usuario
+            JOIN FETCH v.metodoPago
+            WHERE v.cliente.id = :clienteId
+            ORDER BY v.fechaHora DESC
+            """)
+    List<Venta> findByClienteId(@Param("clienteId") Long clienteId);
 }

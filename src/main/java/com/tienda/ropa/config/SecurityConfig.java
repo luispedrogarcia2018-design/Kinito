@@ -63,6 +63,8 @@ public class SecurityConfig {
                         "/admin/inventario/ajuste", "/admin/inventario/ajuste/**").hasRole("ADMIN")
                 .requestMatchers("/admin/proveedores/nuevo", "/admin/proveedores/editar/**",
                         "/admin/proveedores/guardar", "/admin/proveedores/desactivar/**").hasRole("ADMIN")
+                .requestMatchers("/admin/clientes/nuevo", "/admin/clientes/editar/**",
+                        "/admin/clientes/guardar", "/admin/clientes/desactivar/**").hasRole("ADMIN")
 
                 // ADMIN y VENDEDOR: el resto del panel administrativo
                 .requestMatchers("/admin/**").hasAnyRole("ADMIN", "VENDEDOR")

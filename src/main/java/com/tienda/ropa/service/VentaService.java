@@ -95,8 +95,7 @@ public class VentaService {
             throw new ReglaDeNegocioException("El carrito está vacío, agrega al menos un producto");
         }
 
-        Cliente cliente = clienteRepository.findById(form.getClienteId())
-                .orElseThrow(() -> new RecursoNoEncontradoException("Cliente no encontrado"));
+        Cliente cliente = resolverCliente(form);
         MetodoPago metodoPago = metodoPagoRepository.findById(form.getMetodoPagoId())
                 .orElseThrow(() -> new RecursoNoEncontradoException("Método de pago no encontrado"));
 
@@ -150,6 +149,24 @@ public class VentaService {
         }
 
         return venta;
+    }
+
+    // Si el vendedor no escribio nombre, usa el cliente generico "Consumidor
+    // Final" que ya viene cargado (nit = 'CF'). Si escribio un nombre, crea
+    // un cliente nuevo en el momento (no hace falta registrarlo antes).
+    private Cliente resolverCliente(ConfirmarVentaForm form) {
+        String nombre = form.getNombreCliente();
+        if (nombre == null || nombre.isBlank()) {
+            return clienteRepository.findByNit("CF")
+                    .orElseThrow(() -> new RecursoNoEncontradoException(
+                            "No se encontró el cliente 'Consumidor Final' (nit=CF) en la base de datos"));
+        }
+
+        Cliente cliente = new Cliente();
+        cliente.setNombre(nombre.trim());
+        String nit = form.getNitCliente();
+        cliente.setNit((nit != null && !nit.isBlank()) ? nit.trim() : "CF");
+        return clienteRepository.save(cliente);
     }
 
     private String generarNumeroVenta() {

@@ -135,7 +135,6 @@ public class VentaController {
         model.addAttribute("itemForm", new ItemVentaForm());
         model.addAttribute("confirmarForm", new ConfirmarVentaForm());
         model.addAttribute("variantes", varianteRepository.findTodasActivasConDatos());
-        model.addAttribute("clientes", clienteRepository.findAll());
         model.addAttribute("metodosPago", metodoPagoRepository.findAll());
     }
 }

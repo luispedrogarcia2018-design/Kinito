@@ -106,16 +106,22 @@
         <div class="card card-body" th:if="${!#lists.isEmpty(carrito)}">
             <h2 class="h6 mb-3">Finalizar venta</h2>
             <form th:action="@{/admin/ventas/nueva/confirmar}" th:object="${confirmarForm}" method="post" class="row g-3">
-                <div class="col-md-4">
-                    <label class="form-label">Cliente *</label>
-                    <select th:field="*{clienteId}" class="form-select"
-                            th:classappend="${#fields.hasErrors('clienteId')} ? 'is-invalid'">
-                        <option value="">-- Selecciona --</option>
-                        <option th:each="c : ${clientes}" th:value="${c.id}" th:text="${c.nombreCompleto}"></option>
-                    </select>
-                    <div class="invalid-feedback" th:if="${#fields.hasErrors('clienteId')}" th:errors="*{clienteId}"></div>
+                <div class="col-12">
+                    <div class="alert alert-secondary py-2 mb-2">
+                        <i class="bi bi-info-circle me-1"></i>
+                        Deja el nombre en blanco para vender a <strong>Consumidor Final</strong>,
+                        o escribe el nombre del cliente si quieres identificarlo en la venta.
+                    </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
+                    <label class="form-label">Nombre del cliente (opcional)</label>
+                    <input type="text" th:field="*{nombreCliente}" class="form-control" placeholder="Consumidor Final">
+                </div>
+                <div class="col-md-3">
+                    <label class="form-label">NIT (opcional)</label>
+                    <input type="text" th:field="*{nitCliente}" class="form-control" placeholder="CF">
+                </div>
+                <div class="col-md-3">
                     <label class="form-label">Método de pago *</label>
                     <select th:field="*{metodoPagoId}" class="form-select"
                             th:classappend="${#fields.hasErrors('metodoPagoId')} ? 'is-invalid'">
