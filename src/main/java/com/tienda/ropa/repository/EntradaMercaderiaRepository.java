@@ -36,6 +36,15 @@ public interface EntradaMercaderiaRepository extends JpaRepository<EntradaMercad
             """)
     List<EntradaMercaderia> findAllConProveedorYUsuario();
 
+    // Ultimas N entradas para la tabla del dashboard.
+    @Query("""
+            SELECT e FROM EntradaMercaderia e
+            JOIN FETCH e.proveedor
+            ORDER BY e.fecha DESC
+            LIMIT 5
+            """)
+    List<EntradaMercaderia> ultimasCinco();
+
     // Entradas de un proveedor especifico, para su pantalla de detalle.
     @Query("""
             SELECT e FROM EntradaMercaderia e

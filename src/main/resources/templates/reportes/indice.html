@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reportes - Tienda de Ropa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+<div class="d-flex">
+    <nav class="bg-dark text-white p-3" style="width: 240px; min-height: 100vh;">
+        <h5 class="mb-4">🏝️ Tienda de Ropa</h5>
+        <ul class="nav nav-pills flex-column gap-1">
+            <li class="nav-item"><a class="nav-link text-white-50" th:href="@{/admin/dashboard}"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+            <li class="nav-item"><a class="nav-link text-white-50" th:href="@{/admin/productos}"><i class="bi bi-tags me-2"></i>Productos</a></li>
+            <li class="nav-item"><a class="nav-link text-white-50" th:href="@{/admin/inventario}"><i class="bi bi-box-seam me-2"></i>Inventario</a></li>
+            <li class="nav-item"><a class="nav-link text-white-50" th:href="@{/admin/entradas}"><i class="bi bi-truck me-2"></i>Entradas</a></li>
+            <li class="nav-item"><a class="nav-link text-white-50" th:href="@{/admin/ventas}"><i class="bi bi-cart-check me-2"></i>Ventas</a></li>
+            <li class="nav-item"><a class="nav-link text-white-50" th:href="@{/admin/clientes}"><i class="bi bi-people me-2"></i>Clientes</a></li>
+            <li class="nav-item"><a class="nav-link text-white-50" th:href="@{/admin/proveedores}"><i class="bi bi-building me-2"></i>Proveedores</a></li>
+            <li class="nav-item" sec:authorize="hasRole('ADMIN')"><a class="nav-link text-white-50" th:href="@{/admin/usuarios}"><i class="bi bi-person-badge me-2"></i>Usuarios</a></li>
+            <li class="nav-item"><a class="nav-link text-white active" th:href="@{/admin/reportes}"><i class="bi bi-bar-chart me-2"></i>Reportes</a></li>
+        </ul>
+        <form th:action="@{/logout}" method="post" class="mt-4">
+            <button class="btn btn-outline-light btn-sm w-100" type="submit">
+                <i class="bi bi-box-arrow-right me-1"></i> Cerrar sesión
+            </button>
+        </form>
+    </nav>
+
+    <main class="flex-grow-1 p-4">
+        <h1 class="h3 mb-4">Reportes</h1>
+
+        <div class="row g-3">
+            <div class="col-md-6 col-lg-3">
+                <a th:href="@{/admin/reportes/ventas}" class="card text-decoration-none text-dark h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-cart-check fs-1 text-primary"></i>
+                        <h2 class="h6 mt-3">Ventas</h2>
+                        <p class="text-muted small mb-0">Diarias, mensuales o por rango de fechas</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <a th:href="@{/admin/reportes/inventario}" class="card text-decoration-none text-dark h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-box-seam fs-1 text-success"></i>
+                        <h2 class="h6 mt-3">Inventario</h2>
+                        <p class="text-muted small mb-0">Stock actual, stock bajo y agotados</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <a th:href="@{/admin/reportes/productos}" class="card text-decoration-none text-dark h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-tags fs-1 text-warning"></i>
+                        <h2 class="h6 mt-3">Productos</h2>
+                        <p class="text-muted small mb-0">Más y menos vendidos, ventas por categoría</p>
+                    </div>
+                </a>
+            </div>
+            <div class="col-md-6 col-lg-3">
+                <a th:href="@{/admin/reportes/finanzas}" class="card text-decoration-none text-dark h-100">
+                    <div class="card-body text-center">
+                        <i class="bi bi-cash-coin fs-1 text-danger"></i>
+                        <h2 class="h6 mt-3">Finanzas</h2>
+                        <p class="text-muted small mb-0">Total vendido, costo y ganancia bruta estimada</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </main>
+</div>
+</body>
+</html>
