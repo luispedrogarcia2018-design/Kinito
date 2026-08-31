@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catálogo - Tienda de Ropa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/css/tienda.css}" rel="stylesheet">
+</head>
+<body class="tienda-publica">
+
+<div th:replace="~{public/fragments/navbar :: navbar}"></div>
+
+<div class="container py-4">
+    <h1 class="h3 mb-4">Catálogo</h1>
+
+    <form method="get" th:action="@{/productos}" class="card card-body mb-4">
+        <div class="row g-3">
+            <div class="col-md-3">
+                <label class="form-label small">Buscar</label>
+                <input type="text" name="nombre" class="form-control" th:value="${fNombre}" placeholder="Nombre del producto">
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small">Categoría</label>
+                <select name="categoriaId" class="form-select">
+                    <option value="">Todas</option>
+                    <option th:each="c : ${categorias}" th:value="${c.id}" th:selected="${c.id == fCategoriaId}" th:text="${c.nombre}"></option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small">Talla</label>
+                <select name="tallaId" class="form-select">
+                    <option value="">Todas</option>
+                    <option th:each="t : ${tallas}" th:value="${t.id}" th:selected="${t.id == fTallaId}" th:text="${t.nombre}"></option>
+                </select>
+            </div>
+            <div class="col-md-2">
+                <label class="form-label small">Color</label>
+                <select name="colorId" class="form-select">
+                    <option value="">Todos</option>
+                    <option th:each="c : ${colores}" th:value="${c.id}" th:selected="${c.id == fColorId}" th:text="${c.nombre}"></option>
+                </select>
+            </div>
+            <div class="col-md-1">
+                <label class="form-label small">Mín. Q</label>
+                <input type="number" step="0.01" name="precioMin" class="form-control" th:value="${fPrecioMin}">
+            </div>
+            <div class="col-md-1">
+                <label class="form-label small">Máx. Q</label>
+                <input type="number" step="0.01" name="precioMax" class="form-control" th:value="${fPrecioMax}">
+            </div>
+            <div class="col-md-1 d-flex align-items-end">
+                <button type="submit" class="btn btn-tienda-primario w-100">
+                    <i class="bi bi-search"></i>
+                </button>
+            </div>
+
+            <div class="col-12 d-flex gap-3 mt-2">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="soloOfertas" value="true" id="chkOfertas" th:checked="${fSoloOfertas}">
+                    <label class="form-check-label small" for="chkOfertas">Solo ofertas</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" name="soloDisponibles" value="true" id="chkDisponibles" th:checked="${fSoloDisponibles}">
+                    <label class="form-check-label small" for="chkDisponibles">Solo disponibles</label>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <p class="text-muted small" th:text="${#lists.size(productos)} + ' productos encontrados'">0 productos encontrados</p>
+
+    <div class="row g-4">
+        <div class="col-6 col-md-4 col-lg-3" th:each="p : ${productos}">
+            <div th:replace="~{public/fragments/tarjeta-producto :: tarjeta(${p})}"></div>
+        </div>
+        <div class="col-12" th:if="${#lists.isEmpty(productos)}">
+            <p class="text-center text-muted py-5">No se encontraron productos con esos filtros.</p>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{public/fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

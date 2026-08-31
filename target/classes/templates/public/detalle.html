@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${producto.nombre} + ' - Tienda de Ropa'">Producto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/css/tienda.css}" rel="stylesheet">
+</head>
+<body class="tienda-publica">
+
+<div th:replace="~{public/fragments/navbar :: navbar}"></div>
+
+<div class="container py-4">
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb small">
+            <li class="breadcrumb-item"><a th:href="@{/}">Inicio</a></li>
+            <li class="breadcrumb-item"><a th:href="@{/productos}">Productos</a></li>
+            <li class="breadcrumb-item active" th:text="${producto.nombre}">Producto</li>
+        </ol>
+    </nav>
+
+    <div th:if="${mensajeExito}" class="alert alert-success" th:text="${mensajeExito}"></div>
+
+    <div class="row g-5">
+        <div class="col-md-6">
+            <div class="tienda-imagen-detalle">
+                <i class="bi bi-image"></i>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="text-muted small" th:text="${producto.categoria.nombre}">Categoría</div>
+            <h1 class="h3" th:text="${producto.nombre}">Nombre del producto</h1>
+            <p class="text-muted small">SKU: <span th:text="${producto.sku}">SKU</span></p>
+
+            <div class="mb-3">
+                <span th:if="${producto.enOferta}" class="precio-anterior me-2 fs-5"
+                      th:text="'Q ' + ${#numbers.formatDecimal(producto.precioVenta, 1, 2)}">Q 0.00</span>
+                <span class="precio-actual fs-3"
+                      th:text="'Q ' + ${#numbers.formatDecimal(producto.enOferta ? producto.precioOferta : producto.precioVenta, 1, 2)}">Q 0.00</span>
+            </div>
+
+            <p th:text="${producto.descripcion}">Descripción del producto.</p>
+
+            <form th:action="@{/carrito/agregar}" method="post" id="formAgregarCarrito">
+                <div class="mb-3">
+                    <label class="form-label">Talla y color</label>
+                    <select name="varianteId" id="selectVariante" class="form-select" required>
+                        <option value="">-- Selecciona --</option>
+                        <option th:each="v : ${variantes}"
+                                th:value="${v.id}"
+                                th:attr="data-stock=${v.inventario.stockActual}"
+                                th:text="${v.color.nombre + ' / ' + v.talla.nombre + (v.inventario.stockActual > 0 ? ' (' + v.inventario.stockActual + ' disponibles)' : ' (agotado)')}"
+                                th:disabled="${v.inventario.stockActual == 0}">
+                        </option>
+                    </select>
+                </div>
+
+                <div class="mb-3" style="max-width: 150px;">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" name="cantidad" id="inputCantidad" class="form-control" value="1" min="1" required>
+                </div>
+
+                <button type="submit" class="btn btn-tienda-primario btn-lg" id="btnAgregar" disabled>
+                    <i class="bi bi-cart-plus me-1"></i> Agregar al carrito
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div th:replace="~{public/fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // El stock disponible viene calculado desde Java (InventarioService);
+    // este script solo limita la cantidad maxima segun la variante elegida,
+    // el servidor vuelve a validar el stock real al confirmar la venta.
+    const selectVariante = document.getElementById('selectVariante');
+    const inputCantidad = document.getElementById('inputCantidad');
+    const btnAgregar = document.getElementById('btnAgregar');
+
+    selectVariante.addEventListener('change', function () {
+        const opcion = this.options[this.selectedIndex];
+        const stock = parseInt(opcion.getAttribute('data-stock') || '0', 10);
+        if (this.value && stock > 0) {
+            inputCantidad.max = stock;
+            if (parseInt(inputCantidad.value, 10) > stock) inputCantidad.value = stock;
+            btnAgregar.disabled = false;
+        } else {
+            btnAgregar.disabled = true;
+        }
+    });
+</script>
+</body>
+</html>

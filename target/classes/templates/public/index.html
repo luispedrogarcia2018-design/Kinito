@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Ropa — Shorts, trajes de baño y ropa de playa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link th:href="@{/css/tienda.css}" rel="stylesheet">
+</head>
+<body class="tienda-publica">
+
+<div th:replace="~{public/fragments/navbar :: navbar}"></div>
+
+<!-- Hero -->
+<section class="tienda-hero text-center">
+    <div class="container">
+        <h1>Viste tu verano con estilo tropical 🌴</h1>
+        <p class="lead mx-auto mb-4">Shorts, pantalonetas, trajes de baño y ropa de playa pensada para el calor de Guatemala.</p>
+        <a th:href="@{/productos}" class="btn btn-tienda-primario me-2">Ver colección</a>
+        <a th:href="@{/productos(soloOfertas=true)}" class="btn btn-tienda-outline">Ver ofertas</a>
+    </div>
+</section>
+
+<!-- Categorias -->
+<section class="container py-5">
+    <h2 class="h4 text-center mb-4">Compra por categoría</h2>
+    <div class="d-flex flex-wrap justify-content-center gap-2">
+        <a th:each="c : ${categorias}" th:href="@{/productos(categoriaId=${c.id})}" class="tienda-categoria-chip" th:text="${c.nombre}">Categoría</a>
+    </div>
+</section>
+
+<!-- Destacados -->
+<section class="container py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="h4 mb-0">Productos destacados</h2>
+        <a th:href="@{/productos}" class="text-decoration-none">Ver todos <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div class="row g-4">
+        <div class="col-6 col-md-4 col-lg-2" th:each="p : ${destacados}">
+            <div th:replace="~{public/fragments/tarjeta-producto :: tarjeta(${p})}"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Ofertas -->
+<section class="container py-4" th:if="${!#lists.isEmpty(ofertas)}">
+    <h2 class="h4 mb-4">🔥 En oferta</h2>
+    <div class="row g-4">
+        <div class="col-6 col-md-3" th:each="p : ${ofertas}">
+            <div th:replace="~{public/fragments/tarjeta-producto :: tarjeta(${p})}"></div>
+        </div>
+    </div>
+</section>
+
+<!-- Beneficios -->
+<section class="container py-5">
+    <div class="row g-4 text-center">
+        <div class="col-md-4">
+            <i class="bi bi-truck fs-1" style="color: var(--tienda-turquesa);"></i>
+            <h3 class="h6 mt-2">Entrega rápida</h3>
+            <p class="text-muted small">Recibe tu pedido en toda Guatemala.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="bi bi-shield-check fs-1" style="color: var(--tienda-turquesa);"></i>
+            <h3 class="h6 mt-2">Compra segura</h3>
+            <p class="text-muted small">Tus datos siempre protegidos.</p>
+        </div>
+        <div class="col-md-4">
+            <i class="bi bi-arrow-repeat fs-1" style="color: var(--tienda-turquesa);"></i>
+            <h3 class="h6 mt-2">Cambios fáciles</h3>
+            <p class="text-muted small">Si la talla no es la correcta, la cambiamos.</p>
+        </div>
+    </div>
+</section>
+
+<div th:replace="~{public/fragments/footer :: footer}"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
