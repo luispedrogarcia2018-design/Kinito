@@ -1,0 +1,167 @@
+/* ==========================================================
+   Tienda de Ropa — estilos propios de la tienda PUBLICA.
+   El panel administrativo sigue usando Bootstrap por defecto;
+   este archivo es exclusivo del catalogo/frontend de clientes.
+   ========================================================== */
+
+:root {
+    --tienda-turquesa: #0e9594;
+    --tienda-turquesa-oscuro: #0b6e6d;
+    --tienda-coral: #ff7a5c;
+    --tienda-coral-oscuro: #e85f40;
+    --tienda-arena: #fdf6e9;
+    --tienda-arena-oscuro: #f3e6c8;
+    --tienda-texto: #1f2d2d;
+}
+
+body.tienda-publica {
+    background-color: var(--tienda-arena);
+    color: var(--tienda-texto);
+    font-family: 'Poppins', 'Segoe UI', sans-serif;
+}
+
+/* ---------------- Navbar ---------------- */
+.tienda-navbar {
+    background: linear-gradient(90deg, var(--tienda-turquesa), var(--tienda-turquesa-oscuro));
+}
+.tienda-navbar .navbar-brand {
+    font-weight: 700;
+    letter-spacing: .5px;
+}
+.tienda-navbar .nav-link {
+    color: rgba(255,255,255,.9) !important;
+    font-weight: 500;
+}
+.tienda-navbar .nav-link:hover {
+    color: #fff !important;
+}
+.tienda-navbar .badge-carrito {
+    background: var(--tienda-coral);
+}
+
+/* ---------------- Hero ---------------- */
+.tienda-hero {
+    background: linear-gradient(135deg, var(--tienda-turquesa) 0%, var(--tienda-turquesa-oscuro) 55%, #084b4a 100%);
+    color: #fff;
+    padding: 5rem 1rem;
+    position: relative;
+    overflow: hidden;
+}
+.tienda-hero::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 80% 20%, rgba(255,255,255,.12), transparent 45%),
+                radial-gradient(circle at 10% 90%, rgba(255,122,92,.25), transparent 40%);
+    pointer-events: none;
+}
+.tienda-hero h1 {
+    font-weight: 800;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    position: relative;
+}
+.tienda-hero p.lead {
+    max-width: 560px;
+    position: relative;
+}
+.btn-tienda-primario {
+    background-color: var(--tienda-coral);
+    border-color: var(--tienda-coral);
+    color: #fff;
+    font-weight: 600;
+    padding: .6rem 1.6rem;
+    border-radius: 999px;
+}
+.btn-tienda-primario:hover {
+    background-color: var(--tienda-coral-oscuro);
+    border-color: var(--tienda-coral-oscuro);
+    color: #fff;
+}
+.btn-tienda-outline {
+    border: 2px solid #fff;
+    color: #fff;
+    font-weight: 600;
+    padding: .55rem 1.5rem;
+    border-radius: 999px;
+    background: transparent;
+}
+.btn-tienda-outline:hover {
+    background: #fff;
+    color: var(--tienda-turquesa-oscuro);
+}
+
+/* ---------------- Tarjetas de producto ---------------- */
+.tienda-card-producto {
+    border: none;
+    border-radius: 16px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 2px 10px rgba(0,0,0,.06);
+    transition: transform .15s ease, box-shadow .15s ease;
+    height: 100%;
+}
+.tienda-card-producto:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 24px rgba(0,0,0,.12);
+}
+.tienda-card-producto .imagen-placeholder {
+    height: 200px;
+    background: linear-gradient(135deg, var(--tienda-arena-oscuro), var(--tienda-turquesa));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.85);
+    font-size: 2.5rem;
+}
+.tienda-card-producto .precio-anterior {
+    text-decoration: line-through;
+    color: #9aa3a3;
+    font-size: .9rem;
+}
+.tienda-card-producto .precio-actual {
+    color: var(--tienda-coral-oscuro);
+    font-weight: 700;
+    font-size: 1.15rem;
+}
+.badge-oferta {
+    background: var(--tienda-coral);
+}
+
+/* ---------------- Categorias ---------------- */
+.tienda-categoria-chip {
+    background: #fff;
+    border: 2px solid var(--tienda-turquesa);
+    color: var(--tienda-turquesa-oscuro);
+    border-radius: 999px;
+    padding: .5rem 1.2rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-block;
+}
+.tienda-categoria-chip:hover {
+    background: var(--tienda-turquesa);
+    color: #fff;
+}
+
+/* ---------------- Footer ---------------- */
+.tienda-footer {
+    background: #073d3c;
+    color: rgba(255,255,255,.85);
+    padding: 2.5rem 0;
+    margin-top: 4rem;
+}
+.tienda-footer a {
+    color: rgba(255,255,255,.85);
+}
+
+/* ---------------- Detalle de producto ---------------- */
+.tienda-imagen-detalle {
+    height: 380px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, var(--tienda-arena-oscuro), var(--tienda-turquesa));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255,255,255,.85);
+    font-size: 4rem;
+}

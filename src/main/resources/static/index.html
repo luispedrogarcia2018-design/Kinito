@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kinito — Ropa que se siente tuya</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ===== BARRA / RIEL DE COLGADOR ===== -->
+<header class="rail">
+  <div class="rail-inner">
+    <a href="#inicio" class="logo">KINITO<span class="logo-dot">.</span></a>
+    <nav class="nav">
+      <a href="#catalogo">Catálogo</a>
+      <a href="#nosotros">Nosotros</a>
+      <a href="#contacto">Contacto / Pedido</a>
+    </nav>
+    <a href="#contacto" class="btn btn-thread nav-cta">Hacer pedido</a>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===== HERO: estilo etiqueta de tela grande ===== -->
+  <section id="inicio" class="hero">
+    <div class="hero-tag">
+      <p class="eyebrow">— colección permanente —</p>
+      <h1 class="hero-title">HECHO PARA<br>USARSE, NO<br>PARA GUARDARSE</h1>
+      <p class="hero-copy">Kinito es ropa de uso diario pensada para durar: algodón de verdad, costuras que aguantan y precios que no te sacan canas. Mira el catálogo o mándanos tu pedido directo.</p>
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn btn-thread">Ver catálogo</a>
+        <a href="#contacto" class="btn btn-outline">Hacer un pedido</a>
+      </div>
+    </div>
+    <div class="hero-label" aria-hidden="true">
+      <div class="label-row"><span>TALLA</span><span>ORIGEN</span><span>TELA</span></div>
+      <div class="label-row label-row-strong"><span>S–XL</span><span>GT</span><span>100% ALGODÓN</span></div>
+      <div class="stitch-line"></div>
+      <p class="label-note">Lavar con agua fría.<br>No usar secadora.<br>Kinito dura más así.</p>
+    </div>
+  </section>
+
+  <div class="stitch-divider" aria-hidden="true"></div>
+
+  <!-- ===== CATÁLOGO: tarjetas tipo swing-tag colgando ===== -->
+  <section id="catalogo" class="catalogo">
+    <div class="section-head">
+      <p class="eyebrow">— inventario en tienda —</p>
+      <h2>Lo que hay ahorita</h2>
+    </div>
+
+    <div id="productos-estado" class="productos-estado">Colgando las prendas...</div>
+    <div id="productos-grid" class="productos-grid"></div>
+  </section>
+
+  <div class="stitch-divider" aria-hidden="true"></div>
+
+  <!-- ===== NOSOTROS ===== -->
+  <section id="nosotros" class="nosotros reveal">
+    <div class="nosotros-tag">
+      <p class="eyebrow">— la etiqueta trasera —</p>
+      <h2>De dónde salió Kinito</h2>
+      <p>Empezamos vendiendo playeras en el patio de la casa y crecimos pieza por pieza. Seguimos siendo un equipo chico: elegimos cada tela nosotros mismos y respondemos los pedidos uno por uno, sin bodega gigante ni bot de atención al cliente.</p>
+    </div>
+  </section>
+
+  <div class="stitch-divider" aria-hidden="true"></div>
+
+  <!-- ===== CONTACTO / PEDIDOS ===== -->
+  <section id="contacto" class="contacto reveal">
+    <div class="section-head">
+      <p class="eyebrow">— escríbenos —</p>
+      <h2>Contacto y pedidos</h2>
+      <p class="contacto-copy">Agrega prendas al pedido desde el catálogo de arriba, o mándanos una pregunta general.</p>
+    </div>
+
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="pedido">Hacer pedido</button>
+      <button class="tab-btn" data-tab="pregunta">Pregunta general</button>
+    </div>
+
+    <!-- ---- Panel: pedido con carrito ---- -->
+    <div id="panel-pedido" class="tab-panel active">
+      <div id="carrito-vacio" class="carrito-vacio">
+        Todavía no agregas nada. Ve al <a href="#catalogo">catálogo</a> y dale "Agregar al pedido" a lo que quieras.
+      </div>
+      <ul id="carrito-lista" class="carrito-lista"></ul>
+      <p id="carrito-total" class="carrito-total"></p>
+
+      <form id="form-pedido" class="form-tag" novalidate>
+        <div class="form-punch" aria-hidden="true"></div>
+        <div class="form-row">
+          <label for="ped-nombre">Nombre</label>
+          <input type="text" id="ped-nombre" required placeholder="Tu nombre completo">
+        </div>
+        <div class="form-row">
+          <label for="ped-email">Correo</label>
+          <input type="email" id="ped-email" required placeholder="tucorreo@ejemplo.com">
+        </div>
+        <div class="form-row">
+          <label for="ped-telefono">Teléfono (opcional)</label>
+          <input type="tel" id="ped-telefono" placeholder="0000-0000">
+        </div>
+        <div class="form-row">
+          <label for="ped-direccion">Dirección de entrega</label>
+          <input type="text" id="ped-direccion" placeholder="Zona, ciudad">
+        </div>
+        <button type="submit" class="btn btn-thread form-submit">Confirmar pedido</button>
+        <p id="pedido-respuesta" class="form-respuesta" role="status"></p>
+      </form>
+    </div>
+
+    <!-- ---- Panel: pregunta general ---- -->
+    <div id="panel-pregunta" class="tab-panel">
+      <form id="form-contacto" class="form-tag" novalidate>
+        <div class="form-punch" aria-hidden="true"></div>
+        <div class="form-row">
+          <label for="nombre">Nombre</label>
+          <input type="text" id="nombre" name="nombre" required placeholder="Tu nombre completo">
+        </div>
+        <div class="form-row">
+          <label for="email">Correo</label>
+          <input type="email" id="email" name="email" required placeholder="tucorreo@ejemplo.com">
+        </div>
+        <div class="form-row">
+          <label for="telefono">Teléfono (opcional)</label>
+          <input type="tel" id="telefono" name="telefono" placeholder="0000-0000">
+        </div>
+        <div class="form-row form-row-full">
+          <label for="mensaje">Mensaje</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Ej: ¿Tienen la Camisa Oxford en azul?"></textarea>
+        </div>
+        <button type="submit" class="btn btn-thread form-submit">Enviar</button>
+        <p id="form-respuesta" class="form-respuesta" role="status"></p>
+      </form>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <span>KINITO<span class="logo-dot">.</span></span>
+    <span class="footer-note">Proyecto de práctica — tienda ficticia, no hay ventas reales.</span>
+  </div>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+<div th:fragment="tarjeta(p)" class="tienda-card-producto" xmlns:th="http://www.thymeleaf.org">
+    <a th:href="@{/producto/{id}(id=${p.id})}" class="text-decoration-none text-dark">
+        <div class="imagen-placeholder position-relative">
+            <i class="bi bi-image"></i>
+            <span th:if="${p.enOferta}" class="badge badge-oferta position-absolute top-0 end-0 m-2">Oferta</span>
+        </div>
+        <div class="p-3">
+            <div class="text-muted small" th:text="${p.categoria.nombre}">Categoría</div>
+            <div class="fw-semibold" th:text="${p.nombre}">Nombre del producto</div>
+            <div class="mt-1">
+                <span th:if="${p.enOferta}" class="precio-anterior me-2" th:text="'Q ' + ${#numbers.formatDecimal(p.precioVenta, 1, 2)}">Q 0.00</span>
+                <span class="precio-actual" th:text="'Q ' + ${#numbers.formatDecimal(p.enOferta ? p.precioOferta : p.precioVenta, 1, 2)}">Q 0.00</span>
+            </div>
+        </div>
+    </a>
+</div>

@@ -1,0 +1,26 @@
+<footer th:fragment="footer" id="contacto" class="tienda-footer" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <div class="row g-4">
+            <div class="col-md-4">
+                <h5 class="text-white">🏝️ Tienda de Ropa</h5>
+                <p class="small mb-0">Shorts, pantalonetas, trajes de baño y ropa de playa para todo Guatemala.</p>
+            </div>
+            <div class="col-md-4">
+                <h6 class="text-white">Enlaces</h6>
+                <ul class="list-unstyled small">
+                    <li><a th:href="@{/productos}">Catálogo</a></li>
+                    <li><a th:href="@{/productos(soloOfertas=true)}">Ofertas</a></li>
+                    <li><a th:href="@{/carrito}">Mi carrito</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h6 class="text-white">Contacto</h6>
+                <p class="small mb-1"><i class="bi bi-geo-alt me-1"></i> Ciudad de Guatemala, Guatemala</p>
+                <p class="small mb-1"><i class="bi bi-telephone me-1"></i> 5555-0000</p>
+                <p class="small mb-0"><i class="bi bi-envelope me-1"></i> contacto@tiendaropa.com</p>
+            </div>
+        </div>
+        <hr class="border-secondary my-4">
+        <p class="small text-center mb-0">&copy; 2026 Tienda de Ropa. Todos los derechos reservados.</p>
+    </div>
+</footer>

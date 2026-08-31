@@ -1,0 +1,28 @@
+<nav th:fragment="navbar" class="navbar navbar-expand-lg tienda-navbar sticky-top" xmlns:th="http://www.thymeleaf.org">
+    <div class="container">
+        <a class="navbar-brand" th:href="@{/}">🏝️ Tienda de Ropa</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" style="border-color: rgba(255,255,255,.5);">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navMenu">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item"><a class="nav-link" th:href="@{/}">Inicio</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/productos}">Productos</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/productos(soloOfertas=true)}">Ofertas</a></li>
+                <li class="nav-item"><a class="nav-link" th:href="@{/#contacto}">Contacto</a></li>
+            </ul>
+            <ul class="navbar-nav align-items-lg-center gap-lg-2">
+                <li class="nav-item">
+                    <a class="nav-link position-relative" th:href="@{/carrito}">
+                        <i class="bi bi-cart3 fs-5"></i> Carrito
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="btn btn-tienda-outline btn-sm" th:href="@{/login}">
+                        <i class="bi bi-person me-1"></i> Iniciar sesión
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
